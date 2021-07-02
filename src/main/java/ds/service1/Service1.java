@@ -33,9 +33,10 @@ public class Service1 extends Service1ImplBase{
 
 		//prepare the value to be set back
 		int length = request.getText().length();
-		
+		int number = request.getNumber();
+		int result = length * number;
 		//preparing the response message
-		ResponseMessage reply = ResponseMessage.newBuilder().setLength(length).build();
+		ResponseMessage reply = ResponseMessage.newBuilder().setLength(result).build();
 
 		responseObserver.onNext( reply ); 
 

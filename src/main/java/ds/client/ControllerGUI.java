@@ -208,16 +208,17 @@ public class ControllerGUI implements ActionListener{
 			System.out.println(otherEntry1.getText());
 			try {
 				Integer number = Integer.parseInt(otherEntry1.getText());
+				ds.service1.RequestMessage request = ds.service1.RequestMessage.newBuilder().setText(entry1.getText()).setNumber(number).build();
+
+				//retreving reply from service
+				ds.service1.ResponseMessage response = blockingStub.service1Do(request);
+
+				reply1.setText( String.valueOf( response.getLength()) );
 			} catch(Exception error) {
 				 JOptionPane.showMessageDialog(null, "Please specify a number for the second input field");
 			}
 			
-//			ds.service1.RequestMessage request = ds.service1.RequestMessage.newBuilder().setText(entry1.getText()).build();
-//
-//			//retreving reply from service
-//			ds.service1.ResponseMessage response = blockingStub.service1Do(request);
-//
-//			reply1.setText( String.valueOf( response.getLength()) );
+			
 		
 		}else if (label.equals("Invoke Service 2")) {
 			System.out.println("service 2 to be invoked ...");

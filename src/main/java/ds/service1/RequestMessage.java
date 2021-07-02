@@ -17,6 +17,7 @@ private static final long serialVersionUID = 0L;
   }
   private RequestMessage() {
     text_ = "";
+    number_ = 0;
   }
 
   @java.lang.Override
@@ -47,6 +48,11 @@ private static final long serialVersionUID = 0L;
             java.lang.String s = input.readStringRequireUtf8();
 
             text_ = s;
+            break;
+          }
+          case 16: {
+
+            number_ = input.readInt32();
             break;
           }
           default: {
@@ -115,6 +121,15 @@ private static final long serialVersionUID = 0L;
     }
   }
 
+  public static final int NUMBER_FIELD_NUMBER = 2;
+  private int number_;
+  /**
+   * <code>int32 number = 2;</code>
+   */
+  public int getNumber() {
+    return number_;
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -132,6 +147,9 @@ private static final long serialVersionUID = 0L;
     if (!getTextBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, text_);
     }
+    if (number_ != 0) {
+      output.writeInt32(2, number_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -143,6 +161,10 @@ private static final long serialVersionUID = 0L;
     size = 0;
     if (!getTextBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, text_);
+    }
+    if (number_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(2, number_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -162,6 +184,8 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && getText()
         .equals(other.getText());
+    result = result && (getNumber()
+        == other.getNumber());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -175,6 +199,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + TEXT_FIELD_NUMBER;
     hash = (53 * hash) + getText().hashCode();
+    hash = (37 * hash) + NUMBER_FIELD_NUMBER;
+    hash = (53 * hash) + getNumber();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -310,6 +336,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       text_ = "";
 
+      number_ = 0;
+
       return this;
     }
 
@@ -337,6 +365,7 @@ private static final long serialVersionUID = 0L;
     public ds.service1.RequestMessage buildPartial() {
       ds.service1.RequestMessage result = new ds.service1.RequestMessage(this);
       result.text_ = text_;
+      result.number_ = number_;
       onBuilt();
       return result;
     }
@@ -388,6 +417,9 @@ private static final long serialVersionUID = 0L;
       if (!other.getText().isEmpty()) {
         text_ = other.text_;
         onChanged();
+      }
+      if (other.getNumber() != 0) {
+        setNumber(other.getNumber());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -483,6 +515,32 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       text_ = value;
+      onChanged();
+      return this;
+    }
+
+    private int number_ ;
+    /**
+     * <code>int32 number = 2;</code>
+     */
+    public int getNumber() {
+      return number_;
+    }
+    /**
+     * <code>int32 number = 2;</code>
+     */
+    public Builder setNumber(int value) {
+      
+      number_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 number = 2;</code>
+     */
+    public Builder clearNumber() {
+      
+      number_ = 0;
       onChanged();
       return this;
     }

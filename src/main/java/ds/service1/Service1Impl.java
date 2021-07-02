@@ -33,12 +33,12 @@ public final class Service1Impl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016service1.proto\022\010service1\"\036\n\016RequestMes" +
-      "sage\022\014\n\004text\030\001 \001(\t\"!\n\017ResponseMessage\022\016\n" +
-      "\006length\030\001 \001(\0052P\n\010Service1\022D\n\013service1_do" +
-      "\022\030.service1.RequestMessage\032\031.service1.Re" +
-      "sponseMessage\"\000B\035\n\013ds.service1B\014Service1" +
-      "ImplP\001b\006proto3"
+      "\n\016service1.proto\022\010service1\".\n\016RequestMes" +
+      "sage\022\014\n\004text\030\001 \001(\t\022\016\n\006number\030\002 \001(\005\"!\n\017Re" +
+      "sponseMessage\022\016\n\006length\030\001 \001(\0052P\n\010Service" +
+      "1\022D\n\013service1_do\022\030.service1.RequestMessa" +
+      "ge\032\031.service1.ResponseMessage\"\000B\035\n\013ds.se" +
+      "rvice1B\014Service1ImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -57,7 +57,7 @@ public final class Service1Impl {
     internal_static_service1_RequestMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_service1_RequestMessage_descriptor,
-        new java.lang.String[] { "Text", });
+        new java.lang.String[] { "Text", "Number", });
     internal_static_service1_ResponseMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_service1_ResponseMessage_fieldAccessorTable = new

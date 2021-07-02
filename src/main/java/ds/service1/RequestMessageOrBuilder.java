@@ -16,4 +16,9 @@ public interface RequestMessageOrBuilder extends
    */
   com.google.protobuf.ByteString
       getTextBytes();
+
+  /**
+   * <code>int32 number = 2;</code>
+   */
+  int getNumber();
 }
