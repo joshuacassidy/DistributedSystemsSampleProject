@@ -25,7 +25,7 @@ import io.grpc.ManagedChannelBuilder;
 public class ControllerGUI implements ActionListener{
 
 
-	private JTextField entry1, reply1;
+	private JTextField entry1, otherEntry1, reply1;
 	private JTextField entry2, reply2;
 	private JTextField entry3, reply3;
 	private JTextField entry4, reply4;
@@ -42,6 +42,13 @@ public class ControllerGUI implements ActionListener{
 		panel.add(Box.createRigidArea(new Dimension(10, 0)));
 		entry1 = new JTextField("",10);
 		panel.add(entry1);
+		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+		
+		JLabel label2 = new JLabel("Enter second value")	;
+		panel.add(label2);
+		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+		otherEntry1 = new JTextField("",10);
+		panel.add(otherEntry1);
 		panel.add(Box.createRigidArea(new Dimension(10, 0)));
 
 		JButton button = new JButton("Invoke Service 1");
@@ -196,6 +203,8 @@ public class ControllerGUI implements ActionListener{
 			Service1Grpc.Service1BlockingStub blockingStub = Service1Grpc.newBlockingStub(channel);
 
 			//preparing message to send
+			System.out.println(entry1.getText());
+			System.out.println(otherEntry1.getText());
 			ds.service1.RequestMessage request = ds.service1.RequestMessage.newBuilder().setText(entry1.getText()).build();
 
 			//retreving reply from service
