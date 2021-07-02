@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -205,12 +206,18 @@ public class ControllerGUI implements ActionListener{
 			//preparing message to send
 			System.out.println(entry1.getText());
 			System.out.println(otherEntry1.getText());
-			ds.service1.RequestMessage request = ds.service1.RequestMessage.newBuilder().setText(entry1.getText()).build();
-
-			//retreving reply from service
-			ds.service1.ResponseMessage response = blockingStub.service1Do(request);
-
-			reply1.setText( String.valueOf( response.getLength()) );
+			try {
+				Integer number = Integer.parseInt(otherEntry1.getText());
+			} catch(Exception error) {
+				 JOptionPane.showMessageDialog(null, "Please specify a number for the second input field");
+			}
+			
+//			ds.service1.RequestMessage request = ds.service1.RequestMessage.newBuilder().setText(entry1.getText()).build();
+//
+//			//retreving reply from service
+//			ds.service1.ResponseMessage response = blockingStub.service1Do(request);
+//
+//			reply1.setText( String.valueOf( response.getLength()) );
 		
 		}else if (label.equals("Invoke Service 2")) {
 			System.out.println("service 2 to be invoked ...");

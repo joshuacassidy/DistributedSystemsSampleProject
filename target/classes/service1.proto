@@ -14,7 +14,8 @@ service Service1 {
 }
 
 message RequestMessage {
-  string text = 1;  
+  string text = 1; 
+  int number = 2; 
 }
 
 message ResponseMessage {
