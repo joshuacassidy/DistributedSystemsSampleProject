@@ -4,21 +4,21 @@
 package ds.service2;
 
 /**
- * Protobuf type {@code service2.ResponseMessage}
+ * Protobuf type {@code service2.GetTodoResponseMessage}
  */
-public  final class ResponseMessage extends
+public  final class GetTodoResponseMessage extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:service2.ResponseMessage)
-    ResponseMessageOrBuilder {
+    // @@protoc_insertion_point(message_implements:service2.GetTodoResponseMessage)
+    GetTodoResponseMessageOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use ResponseMessage.newBuilder() to construct.
-  private ResponseMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use GetTodoResponseMessage.newBuilder() to construct.
+  private GetTodoResponseMessage(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private ResponseMessage() {
-    message_ = "";
-    success_ = false;
+  private GetTodoResponseMessage() {
     status_ = 0;
+    text_ = "";
+    message_ = "";
   }
 
   @java.lang.Override
@@ -26,7 +26,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private ResponseMessage(
+  private GetTodoResponseMessage(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -45,20 +45,21 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 10: {
+          case 8: {
+
+            status_ = input.readInt32();
+            break;
+          }
+          case 18: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            text_ = s;
+            break;
+          }
+          case 26: {
             java.lang.String s = input.readStringRequireUtf8();
 
             message_ = s;
-            break;
-          }
-          case 16: {
-
-            success_ = input.readBool();
-            break;
-          }
-          case 24: {
-
-            status_ = input.readInt32();
             break;
           }
           default: {
@@ -82,21 +83,64 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return ds.service2.Service2Impl.internal_static_service2_ResponseMessage_descriptor;
+    return ds.service2.Service2Impl.internal_static_service2_GetTodoResponseMessage_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return ds.service2.Service2Impl.internal_static_service2_ResponseMessage_fieldAccessorTable
+    return ds.service2.Service2Impl.internal_static_service2_GetTodoResponseMessage_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            ds.service2.ResponseMessage.class, ds.service2.ResponseMessage.Builder.class);
+            ds.service2.GetTodoResponseMessage.class, ds.service2.GetTodoResponseMessage.Builder.class);
   }
 
-  public static final int MESSAGE_FIELD_NUMBER = 1;
+  public static final int STATUS_FIELD_NUMBER = 1;
+  private int status_;
+  /**
+   * <code>int32 status = 1;</code>
+   */
+  public int getStatus() {
+    return status_;
+  }
+
+  public static final int TEXT_FIELD_NUMBER = 2;
+  private volatile java.lang.Object text_;
+  /**
+   * <code>string text = 2;</code>
+   */
+  public java.lang.String getText() {
+    java.lang.Object ref = text_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      text_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string text = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getTextBytes() {
+    java.lang.Object ref = text_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      text_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int MESSAGE_FIELD_NUMBER = 3;
   private volatile java.lang.Object message_;
   /**
-   * <code>string message = 1;</code>
+   * <code>string message = 3;</code>
    */
   public java.lang.String getMessage() {
     java.lang.Object ref = message_;
@@ -111,7 +155,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string message = 1;</code>
+   * <code>string message = 3;</code>
    */
   public com.google.protobuf.ByteString
       getMessageBytes() {
@@ -125,24 +169,6 @@ private static final long serialVersionUID = 0L;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
-  }
-
-  public static final int SUCCESS_FIELD_NUMBER = 2;
-  private boolean success_;
-  /**
-   * <code>bool success = 2;</code>
-   */
-  public boolean getSuccess() {
-    return success_;
-  }
-
-  public static final int STATUS_FIELD_NUMBER = 3;
-  private int status_;
-  /**
-   * <code>int32 status = 3;</code>
-   */
-  public int getStatus() {
-    return status_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -159,14 +185,14 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getMessageBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
-    }
-    if (success_ != false) {
-      output.writeBool(2, success_);
-    }
     if (status_ != 0) {
-      output.writeInt32(3, status_);
+      output.writeInt32(1, status_);
+    }
+    if (!getTextBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, text_);
+    }
+    if (!getMessageBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, message_);
     }
     unknownFields.writeTo(output);
   }
@@ -177,16 +203,15 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getMessageBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
-    }
-    if (success_ != false) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBoolSize(2, success_);
-    }
     if (status_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(3, status_);
+        .computeInt32Size(1, status_);
+    }
+    if (!getTextBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, text_);
+    }
+    if (!getMessageBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, message_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -198,18 +223,18 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof ds.service2.ResponseMessage)) {
+    if (!(obj instanceof ds.service2.GetTodoResponseMessage)) {
       return super.equals(obj);
     }
-    ds.service2.ResponseMessage other = (ds.service2.ResponseMessage) obj;
+    ds.service2.GetTodoResponseMessage other = (ds.service2.GetTodoResponseMessage) obj;
 
     boolean result = true;
-    result = result && getMessage()
-        .equals(other.getMessage());
-    result = result && (getSuccess()
-        == other.getSuccess());
     result = result && (getStatus()
         == other.getStatus());
+    result = result && getText()
+        .equals(other.getText());
+    result = result && getMessage()
+        .equals(other.getMessage());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -221,81 +246,80 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
-    hash = (53 * hash) + getMessage().hashCode();
-    hash = (37 * hash) + SUCCESS_FIELD_NUMBER;
-    hash = (53 * hash) + com.google.protobuf.Internal.hashBoolean(
-        getSuccess());
     hash = (37 * hash) + STATUS_FIELD_NUMBER;
     hash = (53 * hash) + getStatus();
+    hash = (37 * hash) + TEXT_FIELD_NUMBER;
+    hash = (53 * hash) + getText().hashCode();
+    hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+    hash = (53 * hash) + getMessage().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static ds.service2.ResponseMessage parseFrom(
+  public static ds.service2.GetTodoResponseMessage parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ds.service2.ResponseMessage parseFrom(
+  public static ds.service2.GetTodoResponseMessage parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ds.service2.ResponseMessage parseFrom(
+  public static ds.service2.GetTodoResponseMessage parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ds.service2.ResponseMessage parseFrom(
+  public static ds.service2.GetTodoResponseMessage parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ds.service2.ResponseMessage parseFrom(byte[] data)
+  public static ds.service2.GetTodoResponseMessage parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static ds.service2.ResponseMessage parseFrom(
+  public static ds.service2.GetTodoResponseMessage parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static ds.service2.ResponseMessage parseFrom(java.io.InputStream input)
+  public static ds.service2.GetTodoResponseMessage parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static ds.service2.ResponseMessage parseFrom(
+  public static ds.service2.GetTodoResponseMessage parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static ds.service2.ResponseMessage parseDelimitedFrom(java.io.InputStream input)
+  public static ds.service2.GetTodoResponseMessage parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static ds.service2.ResponseMessage parseDelimitedFrom(
+  public static ds.service2.GetTodoResponseMessage parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static ds.service2.ResponseMessage parseFrom(
+  public static ds.service2.GetTodoResponseMessage parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static ds.service2.ResponseMessage parseFrom(
+  public static ds.service2.GetTodoResponseMessage parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -308,7 +332,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(ds.service2.ResponseMessage prototype) {
+  public static Builder newBuilder(ds.service2.GetTodoResponseMessage prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -324,26 +348,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code service2.ResponseMessage}
+   * Protobuf type {@code service2.GetTodoResponseMessage}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:service2.ResponseMessage)
-      ds.service2.ResponseMessageOrBuilder {
+      // @@protoc_insertion_point(builder_implements:service2.GetTodoResponseMessage)
+      ds.service2.GetTodoResponseMessageOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return ds.service2.Service2Impl.internal_static_service2_ResponseMessage_descriptor;
+      return ds.service2.Service2Impl.internal_static_service2_GetTodoResponseMessage_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return ds.service2.Service2Impl.internal_static_service2_ResponseMessage_fieldAccessorTable
+      return ds.service2.Service2Impl.internal_static_service2_GetTodoResponseMessage_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              ds.service2.ResponseMessage.class, ds.service2.ResponseMessage.Builder.class);
+              ds.service2.GetTodoResponseMessage.class, ds.service2.GetTodoResponseMessage.Builder.class);
     }
 
-    // Construct using ds.service2.ResponseMessage.newBuilder()
+    // Construct using ds.service2.GetTodoResponseMessage.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -361,11 +385,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      message_ = "";
-
-      success_ = false;
-
       status_ = 0;
+
+      text_ = "";
+
+      message_ = "";
 
       return this;
     }
@@ -373,17 +397,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return ds.service2.Service2Impl.internal_static_service2_ResponseMessage_descriptor;
+      return ds.service2.Service2Impl.internal_static_service2_GetTodoResponseMessage_descriptor;
     }
 
     @java.lang.Override
-    public ds.service2.ResponseMessage getDefaultInstanceForType() {
-      return ds.service2.ResponseMessage.getDefaultInstance();
+    public ds.service2.GetTodoResponseMessage getDefaultInstanceForType() {
+      return ds.service2.GetTodoResponseMessage.getDefaultInstance();
     }
 
     @java.lang.Override
-    public ds.service2.ResponseMessage build() {
-      ds.service2.ResponseMessage result = buildPartial();
+    public ds.service2.GetTodoResponseMessage build() {
+      ds.service2.GetTodoResponseMessage result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -391,11 +415,11 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public ds.service2.ResponseMessage buildPartial() {
-      ds.service2.ResponseMessage result = new ds.service2.ResponseMessage(this);
-      result.message_ = message_;
-      result.success_ = success_;
+    public ds.service2.GetTodoResponseMessage buildPartial() {
+      ds.service2.GetTodoResponseMessage result = new ds.service2.GetTodoResponseMessage(this);
       result.status_ = status_;
+      result.text_ = text_;
+      result.message_ = message_;
       onBuilt();
       return result;
     }
@@ -434,25 +458,26 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof ds.service2.ResponseMessage) {
-        return mergeFrom((ds.service2.ResponseMessage)other);
+      if (other instanceof ds.service2.GetTodoResponseMessage) {
+        return mergeFrom((ds.service2.GetTodoResponseMessage)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(ds.service2.ResponseMessage other) {
-      if (other == ds.service2.ResponseMessage.getDefaultInstance()) return this;
+    public Builder mergeFrom(ds.service2.GetTodoResponseMessage other) {
+      if (other == ds.service2.GetTodoResponseMessage.getDefaultInstance()) return this;
+      if (other.getStatus() != 0) {
+        setStatus(other.getStatus());
+      }
+      if (!other.getText().isEmpty()) {
+        text_ = other.text_;
+        onChanged();
+      }
       if (!other.getMessage().isEmpty()) {
         message_ = other.message_;
         onChanged();
-      }
-      if (other.getSuccess() != false) {
-        setSuccess(other.getSuccess());
-      }
-      if (other.getStatus() != 0) {
-        setStatus(other.getStatus());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -469,11 +494,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      ds.service2.ResponseMessage parsedMessage = null;
+      ds.service2.GetTodoResponseMessage parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (ds.service2.ResponseMessage) e.getUnfinishedMessage();
+        parsedMessage = (ds.service2.GetTodoResponseMessage) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -483,9 +508,104 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private int status_ ;
+    /**
+     * <code>int32 status = 1;</code>
+     */
+    public int getStatus() {
+      return status_;
+    }
+    /**
+     * <code>int32 status = 1;</code>
+     */
+    public Builder setStatus(int value) {
+      
+      status_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 status = 1;</code>
+     */
+    public Builder clearStatus() {
+      
+      status_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object text_ = "";
+    /**
+     * <code>string text = 2;</code>
+     */
+    public java.lang.String getText() {
+      java.lang.Object ref = text_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        text_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string text = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTextBytes() {
+      java.lang.Object ref = text_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        text_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string text = 2;</code>
+     */
+    public Builder setText(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      text_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string text = 2;</code>
+     */
+    public Builder clearText() {
+      
+      text_ = getDefaultInstance().getText();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string text = 2;</code>
+     */
+    public Builder setTextBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      text_ = value;
+      onChanged();
+      return this;
+    }
+
     private java.lang.Object message_ = "";
     /**
-     * <code>string message = 1;</code>
+     * <code>string message = 3;</code>
      */
     public java.lang.String getMessage() {
       java.lang.Object ref = message_;
@@ -500,7 +620,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string message = 1;</code>
+     * <code>string message = 3;</code>
      */
     public com.google.protobuf.ByteString
         getMessageBytes() {
@@ -516,7 +636,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string message = 1;</code>
+     * <code>string message = 3;</code>
      */
     public Builder setMessage(
         java.lang.String value) {
@@ -529,7 +649,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string message = 1;</code>
+     * <code>string message = 3;</code>
      */
     public Builder clearMessage() {
       
@@ -538,7 +658,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string message = 1;</code>
+     * <code>string message = 3;</code>
      */
     public Builder setMessageBytes(
         com.google.protobuf.ByteString value) {
@@ -548,58 +668,6 @@ private static final long serialVersionUID = 0L;
   checkByteStringIsUtf8(value);
       
       message_ = value;
-      onChanged();
-      return this;
-    }
-
-    private boolean success_ ;
-    /**
-     * <code>bool success = 2;</code>
-     */
-    public boolean getSuccess() {
-      return success_;
-    }
-    /**
-     * <code>bool success = 2;</code>
-     */
-    public Builder setSuccess(boolean value) {
-      
-      success_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>bool success = 2;</code>
-     */
-    public Builder clearSuccess() {
-      
-      success_ = false;
-      onChanged();
-      return this;
-    }
-
-    private int status_ ;
-    /**
-     * <code>int32 status = 3;</code>
-     */
-    public int getStatus() {
-      return status_;
-    }
-    /**
-     * <code>int32 status = 3;</code>
-     */
-    public Builder setStatus(int value) {
-      
-      status_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 status = 3;</code>
-     */
-    public Builder clearStatus() {
-      
-      status_ = 0;
       onChanged();
       return this;
     }
@@ -616,41 +684,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:service2.ResponseMessage)
+    // @@protoc_insertion_point(builder_scope:service2.GetTodoResponseMessage)
   }
 
-  // @@protoc_insertion_point(class_scope:service2.ResponseMessage)
-  private static final ds.service2.ResponseMessage DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:service2.GetTodoResponseMessage)
+  private static final ds.service2.GetTodoResponseMessage DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new ds.service2.ResponseMessage();
+    DEFAULT_INSTANCE = new ds.service2.GetTodoResponseMessage();
   }
 
-  public static ds.service2.ResponseMessage getDefaultInstance() {
+  public static ds.service2.GetTodoResponseMessage getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<ResponseMessage>
-      PARSER = new com.google.protobuf.AbstractParser<ResponseMessage>() {
+  private static final com.google.protobuf.Parser<GetTodoResponseMessage>
+      PARSER = new com.google.protobuf.AbstractParser<GetTodoResponseMessage>() {
     @java.lang.Override
-    public ResponseMessage parsePartialFrom(
+    public GetTodoResponseMessage parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new ResponseMessage(input, extensionRegistry);
+      return new GetTodoResponseMessage(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<ResponseMessage> parser() {
+  public static com.google.protobuf.Parser<GetTodoResponseMessage> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<ResponseMessage> getParserForType() {
+  public com.google.protobuf.Parser<GetTodoResponseMessage> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public ds.service2.ResponseMessage getDefaultInstanceForType() {
+  public ds.service2.GetTodoResponseMessage getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

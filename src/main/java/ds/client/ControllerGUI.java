@@ -2,8 +2,10 @@ package ds.client;
 
 import java.awt.Dimension;
 import java.awt.Insets;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -14,6 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import com.google.protobuf.ProtocolStringList;
 
 import ds.service1.Service1Grpc;
 import ds.service2.Service2Grpc;
@@ -27,11 +31,14 @@ public class ControllerGUI implements ActionListener{
 
 
 	private JTextField entry1, otherEntry1, reply1;
-	private JTextField entry2, reply2;
+	private JTextField entry2;
 	private JTextField entry3, reply3;
 	private JTextField entry4, reply4;
 
 
+	private JTextField getTodoEntry;
+	
+	
 	private JPanel getService1JPanel() {
 
 		JPanel panel = new JPanel();
@@ -69,10 +76,14 @@ public class ControllerGUI implements ActionListener{
 
 	private JPanel getService2JPanel() {
 
+		
+
+		
 		JPanel panel = new JPanel();
-
-		BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.X_AXIS);
-
+		
+		
+		BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.X_AXIS);	
+		
 		JLabel label = new JLabel("Enter value")	;
 		panel.add(label);
 		panel.add(Box.createRigidArea(new Dimension(10, 0)));
@@ -84,12 +95,11 @@ public class ControllerGUI implements ActionListener{
 		button.addActionListener(this);
 		panel.add(button);
 		panel.add(Box.createRigidArea(new Dimension(10, 0)));
-
-		reply2 = new JTextField("", 10);
-		reply2 .setEditable(false);
-		panel.add(reply2 );
-
 		panel.setLayout(boxlayout);
+		
+
+		
+		
 
 		return panel;
 
@@ -150,6 +160,56 @@ public class ControllerGUI implements ActionListener{
 		return panel;
 
 	}
+	
+	
+	private JPanel getTodoJPanel() {
+
+		JPanel panel = new JPanel();
+
+		BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.X_AXIS);
+
+		JLabel label = new JLabel("Index of todo list")	;
+		panel.add(label);
+		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+		getTodoEntry = new JTextField("",10);
+		panel.add(getTodoEntry);
+		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+
+		JButton button = new JButton("Get Single Todo");
+		button.addActionListener(this);
+		panel.add(button);
+		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+
+
+		panel.setLayout(boxlayout);
+
+		return panel;
+
+	}
+	
+	private JPanel getAllTodos() {
+
+		JPanel panel = new JPanel();
+
+		BoxLayout boxlayout = new BoxLayout(panel, BoxLayout.X_AXIS);
+
+		
+
+		JButton button = new JButton("Get All Todos");
+		button.addActionListener(this);
+		panel.add(button);
+		panel.add(Box.createRigidArea(new Dimension(10, 0)));
+
+
+		panel.setLayout(boxlayout);
+
+		return panel;
+
+	}
+	
+	
+	
+	
 	public static void main(String[] args) {
 
 		ControllerGUI gui = new ControllerGUI();
@@ -177,6 +237,12 @@ public class ControllerGUI implements ActionListener{
 		panel.add( getService2JPanel() );
 		panel.add( getService3JPanel() );
 		panel.add( getService4JPanel() );
+		
+		panel.add( getTodoJPanel() );
+		panel.add( getAllTodos() );
+
+		
+		
 
 		// Set size for the frame
 		frame.setSize(300, 300);
@@ -235,8 +301,18 @@ public class ControllerGUI implements ActionListener{
 
 			//retreving reply from service
 			ds.service2.ResponseMessage response = blockingStub.service2Do(request);
-
-			reply2.setText( String.valueOf( response.getLength()) );
+			
+			
+			
+			
+			if(response.getStatus() == 201) {
+				JOptionPane.showMessageDialog(null, String.valueOf( "Your todo: " + entry2.getText() + " has been added to the todo list"));
+				
+			} else {
+				JOptionPane.showMessageDialog(null, String.valueOf( response.getMessage()));
+				
+			}
+			
 			
 		}else if (label.equals("Invoke Service 3")) {
 			System.out.println("service 3 to be invoked ...");
@@ -274,9 +350,57 @@ public class ControllerGUI implements ActionListener{
 
 			reply4.setText( String.valueOf( response.getLength()) );
 		
-		}else{
+		} else if (label.equals("Get Single Todo")) {
 			
+		
+			/*
+			 * 
+			 */
+			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052).usePlaintext().build();
+			Service2Grpc.Service2BlockingStub blockingStub = Service2Grpc.newBlockingStub(channel);
+
+			//preparing message to send
+			try {
+				int index = Integer.parseInt(getTodoEntry.getText());
+				ds.service2.GetTodoRequestMessage request = ds.service2.GetTodoRequestMessage.newBuilder().setIndex(index).build();
+
+				//retreving reply from service
+				ds.service2.GetTodoResponseMessage response = blockingStub.getTodo(request);
+
+
+				
+				
+				
+				
+				if(response.getStatus() == 200) {
+					JOptionPane.showMessageDialog(null, String.valueOf( "The todo at index " +index  +" is: " + entry2.getText()));
+					
+				} else {
+					JOptionPane.showMessageDialog(null, String.valueOf( response.getMessage()));
+			
+				}
+
+				
+			} catch(Exception error) {
+					JOptionPane.showMessageDialog(null, "Please specify a numerical index for the todo ");
+				
+			}
+				
+			
+		} else if(label.equals("Get All Todos")) {
+			ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052).usePlaintext().build();
+			Service2Grpc.Service2BlockingStub blockingStub = Service2Grpc.newBlockingStub(channel);
+			ProtocolStringList todos = blockingStub.getAllTodos(ds.service2.GetAllTodosRequestMessage.newBuilder().build()).getTodosList();
+			// https://stackoverflow.com/questions/13334198/java-custom-buttons-in-showinputdialog if you want to add more options to your joption pane dialog
+			for(int i = 0; i < todos.size(); i++) {
+				JOptionPane.showMessageDialog(null, "The todo at index: " + i + " is: " + todos.get(i));
+			}
+			
+
+		}else{
 		}
+			
+		
 
 	}
 

@@ -20,6 +20,26 @@ public final class Service2Impl {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_service2_RequestMessage_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_service2_GetTodoRequestMessage_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_service2_GetTodoRequestMessage_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_service2_GetAllTodosRequestMessage_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_service2_GetAllTodosRequestMessage_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_service2_GetAllTodosResponseMessage_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_service2_GetAllTodosResponseMessage_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_service2_GetTodoResponseMessage_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_service2_GetTodoResponseMessage_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_service2_ResponseMessage_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -34,11 +54,22 @@ public final class Service2Impl {
   static {
     java.lang.String[] descriptorData = {
       "\n\016service2.proto\022\010service2\"\036\n\016RequestMes" +
-      "sage\022\014\n\004text\030\001 \001(\t\"!\n\017ResponseMessage\022\016\n" +
-      "\006length\030\001 \001(\0052P\n\010Service2\022D\n\013service2_do" +
-      "\022\030.service2.RequestMessage\032\031.service2.Re" +
-      "sponseMessage\"\000B\035\n\013ds.service2B\014Service2" +
-      "ImplP\001b\006proto3"
+      "sage\022\014\n\004text\030\001 \001(\t\"&\n\025GetTodoRequestMess" +
+      "age\022\r\n\005index\030\001 \001(\005\"\033\n\031GetAllTodosRequest" +
+      "Message\"L\n\032GetAllTodosResponseMessage\022\016\n" +
+      "\006status\030\001 \001(\005\022\r\n\005todos\030\002 \003(\t\022\017\n\007message\030" +
+      "\003 \001(\t\"G\n\026GetTodoResponseMessage\022\016\n\006statu" +
+      "s\030\001 \001(\005\022\014\n\004text\030\002 \001(\t\022\017\n\007message\030\003 \001(\t\"C" +
+      "\n\017ResponseMessage\022\017\n\007message\030\001 \001(\t\022\017\n\007su" +
+      "ccess\030\002 \001(\010\022\016\n\006status\030\003 \001(\0052\374\001\n\010Service2" +
+      "\022D\n\013service2_do\022\030.service2.RequestMessag" +
+      "e\032\031.service2.ResponseMessage\"\000\022N\n\007getTod" +
+      "o\022\037.service2.GetTodoRequestMessage\032 .ser" +
+      "vice2.GetTodoResponseMessage\"\000\022Z\n\013getAll" +
+      "Todos\022#.service2.GetAllTodosRequestMessa" +
+      "ge\032$.service2.GetAllTodosResponseMessage" +
+      "\"\000B\035\n\013ds.service2B\014Service2ImplP\001b\006proto" +
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -58,12 +89,36 @@ public final class Service2Impl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_service2_RequestMessage_descriptor,
         new java.lang.String[] { "Text", });
-    internal_static_service2_ResponseMessage_descriptor =
+    internal_static_service2_GetTodoRequestMessage_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_service2_GetTodoRequestMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_service2_GetTodoRequestMessage_descriptor,
+        new java.lang.String[] { "Index", });
+    internal_static_service2_GetAllTodosRequestMessage_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_service2_GetAllTodosRequestMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_service2_GetAllTodosRequestMessage_descriptor,
+        new java.lang.String[] { });
+    internal_static_service2_GetAllTodosResponseMessage_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_service2_GetAllTodosResponseMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_service2_GetAllTodosResponseMessage_descriptor,
+        new java.lang.String[] { "Status", "Todos", "Message", });
+    internal_static_service2_GetTodoResponseMessage_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_service2_GetTodoResponseMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_service2_GetTodoResponseMessage_descriptor,
+        new java.lang.String[] { "Status", "Text", "Message", });
+    internal_static_service2_ResponseMessage_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_service2_ResponseMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_service2_ResponseMessage_descriptor,
-        new java.lang.String[] { "Length", });
+        new java.lang.String[] { "Message", "Success", "Status", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

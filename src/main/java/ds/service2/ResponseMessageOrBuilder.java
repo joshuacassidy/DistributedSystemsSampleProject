@@ -8,7 +8,22 @@ public interface ResponseMessageOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 length = 1;</code>
+   * <code>string message = 1;</code>
    */
-  int getLength();
+  java.lang.String getMessage();
+  /**
+   * <code>string message = 1;</code>
+   */
+  com.google.protobuf.ByteString
+      getMessageBytes();
+
+  /**
+   * <code>bool success = 2;</code>
+   */
+  boolean getSuccess();
+
+  /**
+   * <code>int32 status = 3;</code>
+   */
+  int getStatus();
 }

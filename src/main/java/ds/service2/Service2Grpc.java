@@ -62,6 +62,70 @@ public final class Service2Grpc {
      return getService2DoMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<ds.service2.GetTodoRequestMessage,
+      ds.service2.GetTodoResponseMessage> getGetTodoMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getTodo",
+      requestType = ds.service2.GetTodoRequestMessage.class,
+      responseType = ds.service2.GetTodoResponseMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ds.service2.GetTodoRequestMessage,
+      ds.service2.GetTodoResponseMessage> getGetTodoMethod() {
+    io.grpc.MethodDescriptor<ds.service2.GetTodoRequestMessage, ds.service2.GetTodoResponseMessage> getGetTodoMethod;
+    if ((getGetTodoMethod = Service2Grpc.getGetTodoMethod) == null) {
+      synchronized (Service2Grpc.class) {
+        if ((getGetTodoMethod = Service2Grpc.getGetTodoMethod) == null) {
+          Service2Grpc.getGetTodoMethod = getGetTodoMethod = 
+              io.grpc.MethodDescriptor.<ds.service2.GetTodoRequestMessage, ds.service2.GetTodoResponseMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "service2.Service2", "getTodo"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ds.service2.GetTodoRequestMessage.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ds.service2.GetTodoResponseMessage.getDefaultInstance()))
+                  .setSchemaDescriptor(new Service2MethodDescriptorSupplier("getTodo"))
+                  .build();
+          }
+        }
+     }
+     return getGetTodoMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<ds.service2.GetAllTodosRequestMessage,
+      ds.service2.GetAllTodosResponseMessage> getGetAllTodosMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "getAllTodos",
+      requestType = ds.service2.GetAllTodosRequestMessage.class,
+      responseType = ds.service2.GetAllTodosResponseMessage.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<ds.service2.GetAllTodosRequestMessage,
+      ds.service2.GetAllTodosResponseMessage> getGetAllTodosMethod() {
+    io.grpc.MethodDescriptor<ds.service2.GetAllTodosRequestMessage, ds.service2.GetAllTodosResponseMessage> getGetAllTodosMethod;
+    if ((getGetAllTodosMethod = Service2Grpc.getGetAllTodosMethod) == null) {
+      synchronized (Service2Grpc.class) {
+        if ((getGetAllTodosMethod = Service2Grpc.getGetAllTodosMethod) == null) {
+          Service2Grpc.getGetAllTodosMethod = getGetAllTodosMethod = 
+              io.grpc.MethodDescriptor.<ds.service2.GetAllTodosRequestMessage, ds.service2.GetAllTodosResponseMessage>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "service2.Service2", "getAllTodos"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ds.service2.GetAllTodosRequestMessage.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  ds.service2.GetAllTodosResponseMessage.getDefaultInstance()))
+                  .setSchemaDescriptor(new Service2MethodDescriptorSupplier("getAllTodos"))
+                  .build();
+          }
+        }
+     }
+     return getGetAllTodosMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -99,6 +163,20 @@ public final class Service2Grpc {
       asyncUnimplementedUnaryCall(getService2DoMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void getTodo(ds.service2.GetTodoRequestMessage request,
+        io.grpc.stub.StreamObserver<ds.service2.GetTodoResponseMessage> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetTodoMethod(), responseObserver);
+    }
+
+    /**
+     */
+    public void getAllTodos(ds.service2.GetAllTodosRequestMessage request,
+        io.grpc.stub.StreamObserver<ds.service2.GetAllTodosResponseMessage> responseObserver) {
+      asyncUnimplementedUnaryCall(getGetAllTodosMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -108,6 +186,20 @@ public final class Service2Grpc {
                 ds.service2.RequestMessage,
                 ds.service2.ResponseMessage>(
                   this, METHODID_SERVICE2_DO)))
+          .addMethod(
+            getGetTodoMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                ds.service2.GetTodoRequestMessage,
+                ds.service2.GetTodoResponseMessage>(
+                  this, METHODID_GET_TODO)))
+          .addMethod(
+            getGetAllTodosMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                ds.service2.GetAllTodosRequestMessage,
+                ds.service2.GetAllTodosResponseMessage>(
+                  this, METHODID_GET_ALL_TODOS)))
           .build();
     }
   }
@@ -140,6 +232,22 @@ public final class Service2Grpc {
       asyncUnaryCall(
           getChannel().newCall(getService2DoMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void getTodo(ds.service2.GetTodoRequestMessage request,
+        io.grpc.stub.StreamObserver<ds.service2.GetTodoResponseMessage> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetTodoMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void getAllTodos(ds.service2.GetAllTodosRequestMessage request,
+        io.grpc.stub.StreamObserver<ds.service2.GetAllTodosResponseMessage> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getGetAllTodosMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -168,6 +276,20 @@ public final class Service2Grpc {
     public ds.service2.ResponseMessage service2Do(ds.service2.RequestMessage request) {
       return blockingUnaryCall(
           getChannel(), getService2DoMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public ds.service2.GetTodoResponseMessage getTodo(ds.service2.GetTodoRequestMessage request) {
+      return blockingUnaryCall(
+          getChannel(), getGetTodoMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public ds.service2.GetAllTodosResponseMessage getAllTodos(ds.service2.GetAllTodosRequestMessage request) {
+      return blockingUnaryCall(
+          getChannel(), getGetAllTodosMethod(), getCallOptions(), request);
     }
   }
 
@@ -199,9 +321,27 @@ public final class Service2Grpc {
       return futureUnaryCall(
           getChannel().newCall(getService2DoMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ds.service2.GetTodoResponseMessage> getTodo(
+        ds.service2.GetTodoRequestMessage request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetTodoMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<ds.service2.GetAllTodosResponseMessage> getAllTodos(
+        ds.service2.GetAllTodosRequestMessage request) {
+      return futureUnaryCall(
+          getChannel().newCall(getGetAllTodosMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SERVICE2_DO = 0;
+  private static final int METHODID_GET_TODO = 1;
+  private static final int METHODID_GET_ALL_TODOS = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -223,6 +363,14 @@ public final class Service2Grpc {
         case METHODID_SERVICE2_DO:
           serviceImpl.service2Do((ds.service2.RequestMessage) request,
               (io.grpc.stub.StreamObserver<ds.service2.ResponseMessage>) responseObserver);
+          break;
+        case METHODID_GET_TODO:
+          serviceImpl.getTodo((ds.service2.GetTodoRequestMessage) request,
+              (io.grpc.stub.StreamObserver<ds.service2.GetTodoResponseMessage>) responseObserver);
+          break;
+        case METHODID_GET_ALL_TODOS:
+          serviceImpl.getAllTodos((ds.service2.GetAllTodosRequestMessage) request,
+              (io.grpc.stub.StreamObserver<ds.service2.GetAllTodosResponseMessage>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -286,6 +434,8 @@ public final class Service2Grpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new Service2FileDescriptorSupplier())
               .addMethod(getService2DoMethod())
+              .addMethod(getGetTodoMethod())
+              .addMethod(getGetAllTodosMethod())
               .build();
         }
       }
